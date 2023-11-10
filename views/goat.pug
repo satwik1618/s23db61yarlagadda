@@ -1,0 +1,21 @@
+extends layout
+block content
+    div(class="container-fluid")
+        h1= title
+         //- - let items = ['dog_type','qugoatity','cost']
+        - let items = results;
+        - let o;
+        div(class="row")
+            each form,item in results
+                div(class = "col-sm-2 bg-danger" onclick=`buy(${item})`) #{form.goat_color}              
+                div(class = "col-sm-2 bg-danger" onclick=`buy(${item})`) #{form.goat_breed}                
+                div(class = "col-sm-2 bg-danger" onclick=`buy(${item})`) #{form.goat_price}
+                hr
+
+    br
+    
+    script.
+        function buy(itemNo)
+        {
+            alert(`You purchased Item ${itemNo+1}`)
+        }    
