@@ -1,64 +1,16 @@
 var goat = require('../models/goat');
-
 // List of all goats
-exports.goat_list = async function(req, res) {
- try{
- thegoats = await goat.find();
- res.send(thegoats);
- }
- catch(err){
- res.status(500);
- res.send(`{"error": ${err}}`);
- } 
+exports.goat_list = function(req, res) {
+res.send('NOT IMPLEMENTED: goat list');
 };
-
-// VIEWS
-// Handle a show all view
-exports.goat_view_all_Page = async function(req, res) {
-    try{
-    thegoats = await goat.find();
-    res.render('goat', { title: 'goat Search Results', results: thegoats });
-    }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
-    }
-    };
-
-    // Handle goat create on POST.
-    exports.goat_create_post = async function(req, res) {
-    console.log(req.body)
-    let document = new goat();
-    // We are looking for a body, since POST does not have query parameters.
-    // Even though bodies can be in many different formats, we will be picky
-    // and require that it be a json object
-    // {"goat_type":"goat", "cost":12, "size":"large"}
-    document.goat_name = req.body.goat_name;
-    document.cost = req.body.cost;
-    document.baggage = req.body.baggage;
-    try{
-    let result = await document.save();
-    res.send(result);
-    }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
-    }
-    };
-
-
-// List of all goats
-// exports.goat_list = function(req, res) {
-// res.send('NOT IMPLEMENTED: goat list');
-// };
 // for a specific goat.
 exports.goat_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: goat detail: ' + req.params.id);
 };
 // Handle goat create on POST.
-// exports.goat_create_post = function(req, res) {
-// res.send('NOT IMPLEMENTED: goat create POST');
-// };
+exports.goat_create_post = function(req, res) {
+res.send('NOT IMPLEMENTED: goat create POST');
+};
 // Handle goat delete form on DELETE.
 exports.goat_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: goat delete DELETE ' + req.params.id);
