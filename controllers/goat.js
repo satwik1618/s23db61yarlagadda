@@ -1,8 +1,16 @@
 var goat = require('../models/goat');
 // List of all goats
-exports.goat_list = function(req, res) {
-res.send('NOT IMPLEMENTED: goat list');
-};
+exports.goat_list = async function(req, res) {
+    try{
+    thegoats = await goat.find();
+    res.send(thegoats);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
+    
 // for a specific goat.
 exports.goat_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: goat detail: ' + req.params.id);
