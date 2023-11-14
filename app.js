@@ -26,7 +26,6 @@ var usersRouter = require('./routes/users');
 var goatRouter = require('./routes/goat');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
-var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -39,8 +38,6 @@ async function recreateDB(){
   goat({goat_color:"red",goat_breed:"American Red goat",goat_price:6500});
   let instance3 = new
   goat({goat_color:"brown",goat_breed:"Fox goat",goat_price:7000});
-  let instance4 = new
-  goat({goat_color:"black",goat_breed:"Jain goat",goat_price:5000});
   instance1.save().then(doc=>{
     console.log("First object saved")}
     ).catch(err=>{
@@ -56,11 +53,6 @@ async function recreateDB(){
         ).catch(err=>{
         console.error(err)
         });
-        instance4.save().then(doc=>{
-          console.log("Fourth object saved")}
-          ).catch(err=>{
-          console.error(err)
-          });
  }
  let reseed = true;
  if (reseed) { recreateDB();}
@@ -81,7 +73,6 @@ app.use('/users', usersRouter);
 app.use('/goat', goatRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
-app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
