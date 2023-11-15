@@ -39,7 +39,7 @@ exports.goat_view_all_Page = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
-    / Handle goat create on POST.
+    // Handle goat create on POST.
     exports.goat_create_post = async function(req, res) {
     console.log(req.body)
     let document = new goat();
@@ -47,9 +47,9 @@ exports.goat_view_all_Page = async function(req, res) {
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
     // {"goat_type":"goat", "cost":12, "size":"large"}
-    document.goat_color = req.body.goat_type;
-    document.goat_breed = req.body.cost;
-    document.goat_price = req.body.size;
+    document.goat_color = req.body.goat_color;
+    document.goat_breed = req.body.goat_breed;
+    document.goat_price = req.body.goat_price;
     try{
     let result = await document.save();
     res.send(result);
@@ -59,5 +59,17 @@ exports.goat_view_all_Page = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
     };
+// for a specific goat.
+exports.goat_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await goat.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+    };
+    
     
     
